@@ -1,0 +1,27 @@
+<a [routerLink] = "'/orders'">
+  Add order
+</a>
+
+<tbody>
+<tr *ngFor="let order of coffeeOrders">
+  <td [hidden]="order.payload.doc.data().completed" 
+     (click)="markCompleted(order)">
+    <i class="material-icons">check</i>
+  </td>
+   <td>{{ order.payload.doc.data().orderNumber }}</td>
+   <td>{{ order.payload.doc.data().customerName }}</td>
+   <td><span 
+      *ngFor="let coffee of order.payload.doc.data().coffeeOrder">
+     {{ coffee }}
+    </span>
+  </td>
+  <td [hidden]="order.payload.doc.data().completed" 
+     (click)="deleteOrder(order)">
+    <i class="material-icons">delete_forever</i>
+  </td>
+</tr>
+</tbody>
+
+  <button type="button" class="btn btn-lg btn-primary" (click)="logout()">
+      Logout
+  </button>
